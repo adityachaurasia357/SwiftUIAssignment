@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var homeViewModel = HomeViewModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            HomeView(viewModel: homeViewModel)
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
+                }
+
+            FavoritesView(viewModel: homeViewModel)
+                .tabItem {
+                    Label("Favorites", systemImage: "star.fill")
+                }
         }
-        .padding()
     }
 }
 
